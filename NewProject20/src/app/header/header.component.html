@@ -1,0 +1,29 @@
+<div style="margin: 10%;">
+
+<table class="table table-bordered table-responsive-md table-hover text-center" >
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Employee ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">DOB</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of emplist">
+        <td scope="row">{{employee.employeeId}}</td>
+        <td scope="row">{{employee.name}}</td>
+        <td scope="row">{{employee.age}}</td>
+        <td scope="row">{{employee.DOB}}</td>
+      </tr>
+    </tbody>
+</table>
+</div>
+
+<div>
+    <h2>Using Custom Directive</h2>
+    <div>
+        Hi Iam for Test.
+    </div>
+</div>
+
