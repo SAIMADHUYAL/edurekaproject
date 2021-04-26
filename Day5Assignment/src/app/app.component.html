@@ -1,16 +1,24 @@
 <div class="container">
 
-<div class="jumbotron align-middle" style="margin: 10%;">
+  <div class="jumbotron" style="margin: 5%;">
 
-  <a class="btn btn-primary btn-lg" routerLink="/" role="button" routerLinkActive = "active" [routerLinkActiveOptions]=" { exact : true }">Home<span class="sr-only">(current)</span></a>
- <br><br><a class="btn btn-success btn-lg" routerLink="/product" role="button" routerLinkActive = "active">Product</a>
-  <br><br><a class="btn btn-dark btn-lg" routerLink="/contact" role="button" routerLinkActive = "active">Contact</a>
+    <div class="row justify-content-center">
+      <a class="btn btn-primary btn-lg" routerLink="/" role="button" routerLinkActive = "active" [routerLinkActiveOptions]=" { exact : true }">Home<span class="sr-only">(current)</span></a>
+    </div><br>
+    <div class="row justify-content-center">
+      <a class="btn btn-success btn-lg" routerLink="/product" role="button" routerLinkActive = "active">Product</a>
+    </div><br>
+    
+    <div class="row justify-content-center">
+      <a class="btn btn-dark btn-lg" routerLink="/contact" role="button" routerLinkActive = "active">Contact</a>
+    </div>
 
  
-</div>
+  </div>
 
-<div class="jumbotron" style="margin: 10%;">
-  <router-outlet></router-outlet>
 
-</div>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
 </div>

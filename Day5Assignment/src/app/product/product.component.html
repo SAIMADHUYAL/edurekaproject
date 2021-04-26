@@ -1,1 +1,19 @@
-<p>product works!</p>
+<div style="margin: 1%;">
+    <table class="table table-bordered table-responsive-md table-hover text-center" >
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of productList">
+            <td scope="row">{{product.product_name}}</td>
+            <td scope="row">{{product.product_price | currency }}</td>
+            <td scope="row"><button class = "btn btn-primary" (click)="send(product)">View Details</button></td>
+            
+          </tr>
+        </tbody>
+      </table>
+</div>

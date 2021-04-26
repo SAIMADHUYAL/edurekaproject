@@ -1,1 +1,34 @@
-<p>product-details works!</p>
+<!--<div class="jumbotron">
+    <div class="container">
+    <div style="float: left;">
+        <p class="lead"> Name: {{ product.product_name}}</p>
+        <p class="lead">Description: {{ product . description }}</p>
+        <p class="lead">Price: {{ product.product_price | currency }}</p><br><br><br>
+        <div class="lead">
+            <a class="link" routerLink="/product">Go to Product List</a>
+        </div>
+    </div>
+    
+    <div style="float: right;">
+         <img src={{product.photo_url}} alt="..." width="200px" height="200px">
+    </div>
+    </div>
+</div>-->
+
+
+<div class="row  justify-content-center">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="row card-body">
+               <div class="col-sm-6">
+                <p class="card-text"> Name: {{ product.product_name}}</p>
+                <p class="card-text">Description: {{ product . description }}</p>
+                <p class="card-text">Price: {{ product.product_price | currency }}</p>
+                <div class="card-text">
+                    <a class="link" routerLink="/product">Go to Product List</a>
+                </div>
+                </div>
+                <img class="col-sm-6" src={{product.photo_url}} alt="Card image cap"/>
+            </div>
+        </div>
+    </div>
