@@ -1,0 +1,13 @@
+<div class="jumbotron align-middle" style="margin: 10%;">
+
+  <a class="btn btn-primary btn-lg" routerLink="/" role="button" routerLinkActive = "active" [routerLinkActiveOptions]=" { exact : true }">Home<span class="sr-only">(current)</span></a>
+ <br><br><a class="btn btn-success btn-lg" routerLink="/product" role="button" routerLinkActive = "active">Product</a>
+  <br><br><a class="btn btn-dark btn-lg" routerLink="/contact" role="button" routerLinkActive = "active">Contact</a>
+
+ 
+</div>
+
+<div class="jumbotron" style="margin: 10%;">
+  <router-outlet></router-outlet>
+
+</div>
