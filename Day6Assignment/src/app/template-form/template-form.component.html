@@ -9,28 +9,166 @@
   <div class="row">
     <div class="col-md-12">
 
-        <form class="col-md-6 offset-md-3"  #loginForm="ngForm" (ngSubmit)="onUserSubmit(loginForm.value)">
+        <form class="col-md-6 offset-md-3" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && onUserSubmit(loginForm.value)">
+
           <div class="form-group">
-            <input type="text" class="form-control" ngModel name="name" placeholder="Enter Full Name">
+            <label for="name">Full Name</label>
+            <input type="text" class="form-control" id="name"  #name="ngModel"
+            [ngClass] = " { 'is-invalid': name?.touched && name?.invalid} "
+              [(ngModel)]="model.name" name="name" required>
+            <div class="invalid-feedback">
+              <div *ngIf="name.errors?.required">FullName is required</div>
+            </div>
           </div>
+
+
           <div class="form-group">
-             <input type="email" class="form-control" ngModel name="email" placeholder="Enter email">
+            <label for="email">Email</label>
+            <input type="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="email"
+            [ngClass] = " { 'is-invalid': email?.touched && email?.invalid} "
+              [(ngModel)]="model.email" name="email" required #email="ngModel">
+              <div class="invalid-feedback">
+                <div *ngIf="email.errors?.required">Email is required</div>
+                <div *ngIf="email.errors?.pattern">Invalid  Email </div>
+              </div>
           </div>
+
+
+
           <div class="form-group">
-             <input type="text" class="form-control"  ngModel name="phone" placeholder="Enter Phone number">
+            <label for="phoneno">Phone No</label>
+              <input type="number" pattern="[1-9]{1}[0-9]{9}" class="form-control" id="phoneno" 
+              [ngClass] = " { 'is-invalid': phoneno?.touched && phoneno?.invalid} "
+                [(ngModel)]="model.phoneno" name="phoneno" required #phoneno="ngModel">
+  
+              <div class="invalid-feedback">
+                <div *ngIf="phoneno.errors?.required">Phone no is required</div>
+                <div *ngIf="phoneno.errors?.pattern">Invalid Phone Number</div>
+              </div>
           </div>
+
+
+
           <div class="form-group">
-             <input type="password" class="form-control" ngModel name="password" placeholder="Password">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="model.pwd" #password="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && password.invalid }" required/>
+            <div class="invalid-feedback">
+                <div *ngIf="password.errors?.required">Password is required</div>
+            </div>
           </div>
+
+
+
           <div class="form-group">
-              <input type="password" class="form-control" ngModel name="confirmPassword" placeholder="Confirm Password">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="model.confirmpwd" #confirmPassword="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && confirmPassword.invalid }" required />
+            <div class="invalid-feedback">
+                <div *ngIf="confirmPassword.errors?.required">Confirm Password is required</div>
+                
+            </div>
+    
+            <div *ngIf="confirmPwdMatch">Password and Confirm Password must match</div>
           </div>
+
+
+
           <div class="form-check">
             <input type="checkbox" class="form-check-input" ngModel name="check">
             <label class="form-check-label" for="check">Agree With Terms and Conditions</label>
           </div><br><br>
-          <button type="submit" class="btn btn-primary">SignUp</button>
+          <button type="submit" class="btn btn-primary">Register</button>
         </form>
-        </div>
-        </div>
+      </div>
+    </div>
 </div>
+
+
+
+
+
+
+
+
+<!--<div class="container">
+  <div [hidden]="submitted">
+    <h1>Template Form</h1>
+    <form (ngSubmit)="templateForm.form.valid && onSubmit(templateForm.value)" #templateForm="ngForm"  >
+      
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" class="form-control" id="name"  #name="ngModel"
+        ngModel name="name" required>
+        <div *ngIf="templateForm.submitted && name.invalid" class="invalid-feedback">
+          <div *ngIf="templateForm.get()">FullName is required</div>
+      </div>
+      
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="email"
+        [(ngModel)]="model.email" name="email" required #email="ngModel">
+        <div *ngIf="templateForm.submitted && email.invalid" class="invalid-feedback">
+          <div *ngIf="email.errors.required">Email is required</div>
+           <div *ngIf="email.errors?.pattern">Invalid  Email </div>
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phoneno">Phone No</label>
+        <input type="number" pattern="[1-9]{1}[0-9]{9}" class="form-control" id="phoneno" 
+        [(ngModel)]="model.phoneno" name="phoneno" required #phoneno="ngModel">
+
+        <div *ngIf="templateForm.submitted && phoneno.invalid" class="invalid-feedback">
+          <div *ngIf="phoneno.errors.required">Phone no is required</div>
+          <div *ngIf="phoneno.errors?.pattern">Invalid Phone Number</div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" [(ngModel)]="model.pwd" #password="ngModel" [ngClass]="{ 'is-invalid': templateForm.submitted && password.invalid }" required/>
+        <div *ngIf="templateForm.submitted && password.invalid" class="invalid-feedback">
+            <div *ngIf="password.errors.required">Password is required</div>
+        </div>
+      </div>
+<div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="model.confirmpwd" #confirmPassword="ngModel" [ngClass]="{ 'is-invalid': templateForm.submitted && confirmPassword.invalid }" required />
+        <div *ngIf="templateForm.submitted && confirmPassword.invalid" class="invalid-feedback">
+            <div *ngIf="confirmPassword.errors.required">Confirm Password is required</div>
+            
+        </div>
+
+        <div *ngIf="confirmPwdMatch">Password and Confirm Password must match</div>
+    </div>
+      
+      <button type="submit" class="btn btn-success"  >Submit</button>
+      <div>
+        <hr>
+       
+      </div>
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+    <h2>Entered Details:</h2>
+    <div class="row">
+      <div class="col-xs-3">Full Name</div>
+      <div class="col-xs-9">{{ model.name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Email</div>
+      <div class="col-xs-9">{{ model.email }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Phone No</div>
+      <div class="col-xs-9">{{ model.phoneno }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Password</div>
+      <div class="col-xs-9">{{ model.pwd }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false;">Back</button>
+  </div>
+</div>-->
